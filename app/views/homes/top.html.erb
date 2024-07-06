@@ -1,2 +1,30 @@
-<h1>Hotel Diary</h1>
-<h3>〜旅の記録が次の旅を導く〜</h3>
+<div class="container-fluid" style="background-image: url('<%= asset_path('top.jpg') %>');">
+
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 mt-5">
+      <h1>Hotel Diary</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 my-5">
+      <h3>〜旅の記録が次の旅を導く〜</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="btn-wrappert mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 mt-5 mb-4">
+      <%= link_to "Log in", new_user_session_path, :class=>"btn btn-info btn-sm btn-block" %>
+    </div>
+  </div>
+  <div class= "row">
+    <div class="btn-wrappert mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 my-4">
+      <%= link_to "Sign up", new_user_registration_path, :class=>"btn btn-success btn-sm btn-block" %>
+    </div>
+  </div>
+  <div class= "row">
+    <div class="btn-wrappert mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 mt-4 mb-5">
+      <%= link_to "Sign up", root_path, :class=>"btn btn-success btn-sm btn-block mb-5" %>
+    </div>
+  </div>
+  
+
+</div>
