@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HotelDiary</title>
+    <title>Hotel Diary</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,7 +15,7 @@
 
   <header class="shadow-sm">
  　<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand p-3" href="/"> <%= image_tag 'Hotel_Diary', size: "50x50" %> Hotel Diary </a>
+      <a class="navbar-brand p-3" href="/"> <%= image_tag 'Hotel_Diary', size: "50x50" %> <%= image_tag 'title' %> </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -102,7 +102,7 @@
       <div class="container">
         <div class="row">
           <div class="mx-auto">
-          　<h4><%= image_tag 'Hotel_Diary', size: "40x40" %> Hotel Diary<p>〜旅の記録が次の旅を導く〜</p></h4>
+          　<h3 style="font-family: Georgia, Charter, Arial, sans-serif;"><%= image_tag 'Hotel_Diary', size: "40x40" %> Hotel Diary </h3><p>〜旅の記録が次の旅を導く〜</p>
           </div>
         </div>
       </div>
