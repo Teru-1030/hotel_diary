@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  get 'users/edit'
-  get 'likes/index'
-  get 'comments/index'
-  get 'comments/show'
-  get 'tags/index'
-  get 'tags/show'
-  get 'posts/new'
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/edit'
   devise_for :users
   root to: "homes#top"
+  resources :users, only: [:show, :edit]
+  resources :posts, only: [:new, :index, :show, :edit]
+  resources :tags, only: [:index, :show]
+  resources :comments, only: [:index, :show]
+  resources :likes, only: [:index]
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

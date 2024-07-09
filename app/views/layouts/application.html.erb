@@ -29,13 +29,13 @@
           <% end %>
        </li>
         <li class="nav-item">
-          <%= link_to root_path, class: 'nav-link text-white' do %>
+          <%= link_to new_post_path, class: 'nav-link text-white' do %>
             <i class="fa-solid fa-users"></i>
             新規投稿
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to root_path, class: 'nav-link text-white' do %>
+          <%= link_to posts_path, class: 'nav-link text-white' do %>
             <i class="fa-solid fa-book-open"></i>
             投稿一覧
           <% end %>
@@ -61,7 +61,7 @@
         <li class="nav-item">
           <%= link_to destroy_user_session_path, class: 'nav-link text-white',method: :delete do %>
             <i class="fa-solid fa-right-from-bracket"></i>
-            Log out
+            ログアウト
           <% end %>
         </li>
       <% else %>
@@ -72,7 +72,7 @@
           <% end %>
        </li>
         <li class="nav-item">
-          <%= link_to  root_path, class: 'nav-link text-white' do %>
+          <%= link_to  posts_path, class: 'nav-link text-white' do %>
           <i class="fa-solid fa-book-open"></i>
             投稿一覧
           <% end %>
