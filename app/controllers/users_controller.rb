@@ -21,6 +21,12 @@ class UsersController < ApplicationController
   end
   
   def withdraw
+    is_matching_login_user
+    @user = User.find(params[:id])
+    @user.update(is_deleted: false)
+    reset_session
+    flash[:notice] = "退会処理を実行しました"
+    redirect_to root_path
   end
   
     
@@ -34,7 +40,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to post_images_path
+      redirect_to users_path
     end
   end
   
