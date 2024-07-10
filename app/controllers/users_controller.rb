@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :user_state, only: [:create]
+  
   def show
     @user = User.find(params[:id])
   end
@@ -8,16 +10,27 @@ class UsersController < ApplicationController
   end
   
   def update
+     is_matching_login_user
     @user = User.find(params[:id])
-    @user.update(user_parmas)
-    redirect_to @user
+    if @user.update(user_params)
+     flash[:notice] = "ユーザーの更新が完了しました"
+     redirect_to @user
+    else
+     render :edit
+    end
   end
+  
+  def withdraw
+  end
+  
+    
   
   private
 
   def user_parmas
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :self_introduction)
   end
+  
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
@@ -25,12 +38,12 @@ class UsersController < ApplicationController
     end
   end
   
-  private
+  
   
   def user_state
-    user = Customer.find_by(email: params[:customer][:email])
+    user = User.find_by(email: params[:user][:email])
   return if user.nil?
-  return unless user.valid_password?(params[:customer][:password])
+  return unless user.valid_password?(params[:user][:password])
   if is_active
     userr_state() 
   else
