@@ -4,12 +4,14 @@ class PostsController < ApplicationController
   end
   
   def create
-    post = Post.new(post_params)
-    post.save
-    redirect_to post_pash(post.id)
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.save
+    redirect_to posts_path
   end
 
   def index
+    @posts = Post.all
   end
 
   def show
@@ -17,4 +19,9 @@ class PostsController < ApplicationController
 
   def edit
   end
+  
+ def post_params
+    params.require(:post).permit(:title, :image, :body)
+ end
+  
 end
