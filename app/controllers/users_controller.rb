@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   return if user.nil?
   return unless user.valid_password?(params[:user][:password])
   if is_active
-    userr_state() 
+    user_state() 
   else
     redirect_to signup_path 
   end
