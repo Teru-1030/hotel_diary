@@ -1,17 +1,15 @@
 class Post < ApplicationRecord
-    has_many_attached :images
+    has_one_attached :image
     belongs_to :user
     
-  def get_images
-  if images.attached?
-    images
-  else
-    file_path = Rails.root.join('app/assets/images/no_img.png')
-    default_image = File.open(file_path)
-    images.attach(io: default_image, filename: 'default-image.png', content_type: 'image/png')
-    images
-  end
-  end
+   def get_image
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_img.jpg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image
+   end
+
 
     
   

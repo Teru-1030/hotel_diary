@@ -2,14 +2,11 @@
   <% @posts.each do |post| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= link_to post_path(post.id) do %>
-     <% if post.images.attached? %>
-      <%= image_tag post.images.first, class: "card-img-top" %>
-     <% end %>
+      <%= image_tag post.get_image, class: "card-img-top"; %>
     <% end %>
     <div class="card-body">
       <div class="row">
         <div class="col-2">
-          <%= image_tag post.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %>
         </div>
         <div class="col-10">
           <p class="card-title">
