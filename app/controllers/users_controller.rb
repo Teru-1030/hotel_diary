@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
   def update
      is_matching_login_user
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update(user_parmas)
      flash[:notice] = "ユーザーの更新が完了しました"
      redirect_to @user
     else
