@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def withdraw
     is_matching_login_user
     @user = User.find(params[:id])
-    @user.update(is_deleted: false)
+    @user.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行しました"
     redirect_to root_path

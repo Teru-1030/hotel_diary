@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :tags, only: [:index, :show]
   resources :comments, only: [:index, :show]
   resources :likes, only: [:index]
+  patch  '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

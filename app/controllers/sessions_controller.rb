@@ -1,4 +1,4 @@
-class SearchesController < ApplicationController
+class SessionsController < ApplicationController
     before_action :reject_user, only: [:create]
 
   protected
@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
   def reject_user
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
-      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
+      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == true))
         flash[:error] = "退会済みです。"
         redirect_to new_user_session_path
       end
@@ -15,4 +15,3 @@ class SearchesController < ApplicationController
     end
   end
 end
-
