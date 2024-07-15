@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image  
+  has_many :posts, dependent: :destroy
   
   validates :name, length: { in: 2..20 }
   validates :self_introduction, length: { maximum: 50 }
@@ -19,8 +20,8 @@ class User < ApplicationRecord
   
   def active_for_authentication?
     super && (is_active == true)
-   end
+  end
 
- has_many :posts, dependent: :destroy
+ 
   
 end

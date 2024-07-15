@@ -26,11 +26,15 @@ class PostsController < ApplicationController
      @post = Post.find(params[:id])
   end
   
-   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)  
+  def update
+    @post = Post.find(params[:id])
+   if @post.update(post_params)
+     flash[:notice] = "編集に成功しました"
+    redirect_to post_path(@post.id)  
+   else
+     render :edit
    end
+  end
   
   def destroy
     post = Post.find(params[:id])

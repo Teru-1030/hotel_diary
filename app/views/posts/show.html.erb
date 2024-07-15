@@ -8,4 +8,5 @@
   <% if @post.user == current_user %>
     <%= link_to "投稿編集", edit_post_path(@post) %>
   <% end %>
+  <%= link_to "戻る", posts_path %>
 </div>
