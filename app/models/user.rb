@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :profile_image  
+  
+  validates :name, length: { in: 2..20 }
+  validates :self_introduction, length: { maximum: 50 }
          
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -14,7 +17,9 @@ class User < ApplicationRecord
       profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
- 
+  def active_for_authentication?
+    super && (is_active == true)
+   end
 
  has_many :posts, dependent: :destroy
   

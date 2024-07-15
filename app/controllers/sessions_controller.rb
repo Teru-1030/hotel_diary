@@ -7,11 +7,13 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
       if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == true))
-        flash[:error] = "退会済みです。"
+        flash[:notice] = "退会済みです"
         redirect_to new_user_session_path
+      else
+      flash[:notice] = "項目を入力してください"
       end
     else
-      flash[:error] = "必須項目を入力してください。"
+      flash[:notice] = "該当するユーザーが見つかりません"
     end
   end
 end

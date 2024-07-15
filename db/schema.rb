@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2024_07_11_144408) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_active"
+    t.boolean "is_active", default: true, null: false
     t.text "self_introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
