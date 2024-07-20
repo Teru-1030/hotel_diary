@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :user_state, only: [:create]
+  
+  before_action :ensure_guest_user, only: [:edit]
   
   def show
     @user = User.find(params[:id])
@@ -47,16 +48,15 @@ class UsersController < ApplicationController
   
   
   
-  def user_state
-    user = User.find_by(email: params[:user][:email])
-  return if user.nil?
-  return unless user.valid_password?(params[:user][:password])
-  if is_active
-    user_state() 
-  else
-    redirect_to signup_path 
-  end
+  
 
-  end
+  
+  
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user) , notice: "ゲストユーザーは遷移できません。"
+    end
+  end  
   
 end
