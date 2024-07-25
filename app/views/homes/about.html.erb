@@ -13,17 +13,19 @@
   
   <div class="row">
     <div class="bg-secondary text-white  mx-auto col-10 col-sm-9 col-lg-7 col-xl-6 my-5">
-      <p>"Hotel Diary"は、宿泊体験を記録・共有し、他の人との情報交換を通じてホテル選びをサポートするSNSサイトです！</br>
+      <p>"Hotel Diary"は、旅行者の皆様が宿泊体験を記録・共有し、他のユーザーとの情報交換を通じて最適な宿泊施設を見つける手助けをするSNSサイトです！</br>
          みなさんで"最高の旅"を作りあげましょう！！
       </p>
       
     </div>
   </div>
   
+<% if current_user %>
   <div class= "row">
     <div class="btn-wrappert mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 mt-5 mb-4">
       <%= link_to "はじめる", posts_path, :class=>"btn btn-success btn-sm btn-block" %>
     </div>
   </div>
+<% end %>
   
 </div>
