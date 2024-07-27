@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   root to: "homes#top"
-  get 'homes/about' => 'homes#about', as: 'about'
+  get 'homes/about' => 'homes#about', as: 'about', controllers: {
+    applicatio: 'users'
+  }
   resources :users, only: [:show, :edit, :update, :withdraw]
   resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update]
   resources :tags, only: [:index, :show]

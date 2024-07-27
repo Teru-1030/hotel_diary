@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: [:edit, :update]
-  before_action :is_matching_login_user, only: [:edit, :update, :withdraw]
+  before_action :is_matching_login_user, only: [:edit, :update,]
   before_action :ensure_guest_user, only: [:edit]
   
   
@@ -40,19 +40,21 @@ class UsersController < ApplicationController
   end
   
   
-  def authenticate_user
+  
+def authenticate_user
     @current_user=User.find_by(id: session[:user_id])
     if @current_user==nil
       redirect_to new_user_session_path
     end
-  end
+end
 
-  def is_matching_login_user
+ def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to user_path(current_user.id)
     end 
-  end
+ end
+ 
   
   
   
