@@ -19,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
         flash[:notice] = "退会済みです"
         redirect_to new_user_session_path
       else
-      flash[:notice] = "項目を入力してください"
+      flash[:notice] = "パスワードが違います"
       end
     else
       flash[:notice] = "該当するユーザーが見つかりません"
