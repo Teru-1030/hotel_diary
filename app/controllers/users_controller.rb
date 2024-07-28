@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update(user_parmas)
      flash[:notice] = "ユーザーの更新が完了しました"
      redirect_to @user
     else
