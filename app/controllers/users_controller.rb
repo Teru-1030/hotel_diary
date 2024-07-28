@@ -36,7 +36,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :self_introduction)
   end
 
-
  def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
