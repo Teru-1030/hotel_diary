@@ -16,9 +16,9 @@ class Post < ApplicationRecord
    
    def self.search_for(content, method)
      if method == 'perfect'
-       Post.where(name: content)
+       Post.where(title: content)
      else
-       Post.where('name LIKE ?', '%' + content + '%')
+       Post.where('title LIKE ?', '%' + content + '%')
      end
    end
 

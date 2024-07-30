@@ -1,7 +1,7 @@
 <% if @model == 'user' %>
-    <h3>ユーザー検索 "<%= @content %>"</h3>
-  <%= render 'users_path', users: @records %>
+	<h3>Users search for "<%= @content %>"</h3>
+  <%= render 'users/index', users: @records %>
 <% elsif @model == 'post' %>
-    <h3>投稿検索 "<%= @content %>"</h3>
-  <%= render 'posts_path', books: @records %>
+	<h3>Posts search for "<%= @content %>"</h3>
+  <%= render '/posts/list', posts: @records %>
 <% end %>
