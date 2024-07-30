@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
-  resources :users, only: [:show, :edit, :update, :withdraw]
+  resources :users, only: [:show, :edit, :update, :withdraw, :index]
   resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update]
   resources :tags, only: [:index, :show]
   resources :comments, only: [:index, :show]

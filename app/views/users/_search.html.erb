@@ -1,0 +1,19 @@
+<div class="col-md-8 offset-md-1">
+        <table>
+         <thead>
+           <tr>
+             <th>プロフィール画像</th>
+             <th>ユーザー名</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @users.each do |user| %>
+           <tr>
+             <td><%= image_tag user.get_profile_image(100,100) %></td>
+             <td><%= user.name %></td>
+             <td><%= link_to "ユーザーページ", user_path(user.id) %></td>
+           </tr>
+           <% end %>
+         </tbody>
+       </table>
+    </div>
