@@ -8,9 +8,10 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
   resources :users, only: [:show, :edit, :update, :withdraw, :index]
-  resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update]
+  resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
+    resources :comments, only: [:create]
+  end
   resources :tags, only: [:index, :show]
-  resources :comments, only: [:index, :show]
   resources :likes, only: [:index]
   patch  '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
   get "/search", to: "searches#search"
