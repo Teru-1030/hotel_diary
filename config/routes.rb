@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update, :withdraw, :index]
   resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end
   resources :tags, only: [:index, :show]
   resources :likes, only: [:index]
