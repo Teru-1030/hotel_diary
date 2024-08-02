@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :post_params, only: [:create, :update]
-  before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
   
   def new
