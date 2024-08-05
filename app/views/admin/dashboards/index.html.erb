@@ -1,9 +1,12 @@
 <h1>ユーザー一覧</h1>
+<div>
+  <%= flash[:notice] %>
+</div>
 <ul>
   <% @users.each do |user| %>
     <li>
       <%= user.name %> - <%= user.email %>
-      <%= link_to '詳細', admin_dashboard_path(user) %>
+      <%= link_to '詳細', admin_user_path(user) %>
     </li>
   <% end %>
 </ul>

@@ -22,5 +22,9 @@ class Post < ApplicationRecord
        Post.where('title LIKE ?', '%' + content + '%')
      end
    end
+   
+   def guest_user?
+    email == GUEST_USER_EMAIL
+   end
 
 end

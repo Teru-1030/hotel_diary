@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :post_params, only: [:create, :update]
   before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :ensure_guest_user, only: [:new]
   
   def new
     @post = Post.new
@@ -61,5 +62,11 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path
     end
  end
+ 
+  def ensure_guest_user
+    if current_user.guest_user?
+      redirect_to posts_path , notice: "ゲストユーザーは遷移できません。"
+    end
+  end  
  
 end

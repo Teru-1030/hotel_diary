@@ -1,0 +1,15 @@
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= @user.email %>
+  <div>
+    <%= @user.self_introduction %>
+  </div>
+  <div>
+    <%= link_to '削除', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+    <%= link_to '戻る', admin_dashboards_path %>
+  </div>
+</div>
+ 
+
+
