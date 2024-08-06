@@ -2,13 +2,11 @@
   <%= flash[:notice] %>
 </div>
 <div>
-  <!--<div class="row">-->
-  <!--<div class="mx-auto">-->
-  <%= image_tag @post.get_image, size: "1000x1000" %>
-  </div>
+  <div class="mt-5 mb-3">
+  <%= image_tag @post.get_image, size: "500x500" %>
   </div>
   <p>ホテル名：<%= @post.title %></p>
-  <p>宿泊記：<%= @post.body %></p>
+  <p>宿泊記録：<%= @post.body %></p>
   <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
   <p>ユーザーネーム：<%= @post.user.name %></p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>

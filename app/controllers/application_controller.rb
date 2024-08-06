@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_authentication
+  before_action :configure_authentication, except: [:top, :about]
  
   private
  
