@@ -29,6 +29,12 @@
           <% end %>
        </li>
        <li class="nav-item">
+          <%= link_to  about_path, class: 'nav-link text-white' do %>
+          <i class="fa-solid fa-list-check"></i>
+            サイト概要
+          <% end %>
+       </li>
+       <li class="nav-item">
           <%= link_to posts_path, class: 'nav-link text-white' do %>
             <i class="fa-solid fa-hotel"></i>
             投稿一覧
