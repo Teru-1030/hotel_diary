@@ -44,9 +44,9 @@ Rails.application.routes.draw do
     
     resources :users, only: [:show]
     
-    patch 'admin/users/:id/withdraw' => 'users#withdraw', as: 'admin_withdraw'
+    patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     
-    get 'admin/users/memory' => 'users#memory', as: 'memory'
+    get 'users/:id/memory' => 'users#memory', as: 'memory'
     
     resources :posts, only: [:show, :destroy]
   end

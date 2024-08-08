@@ -28,9 +28,6 @@ end
       if @user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false)
         flash[:notice] = "退会済みです"
         redirect_to new_user_session_path
-      elsif @user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false)
-        flash[:notice] = "退会済みです"
-        redirect_to new_user_session_path
       else
       flash[:notice] = "パスワードが違います"
       end

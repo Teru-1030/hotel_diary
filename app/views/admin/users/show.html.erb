@@ -6,7 +6,7 @@
     <%= @user.self_introduction %>
   </div>
   <div>
-    <%= link_to '削除', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+    <%= link_to '強制退会処理', admin_memory_path(@user) %> 
     <%= link_to '戻る', admin_dashboards_path %>
   </div>
 </div>

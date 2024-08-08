@@ -7,6 +7,10 @@ class Admin::UsersController < ApplicationController
     @posts = @user.posts
   end
   
+  def memory
+    @user = User.find(params[:id])
+  end  
+    
   def withdraw
     @user = User.find(params[:id])
     @user.update(is_deleted: false)
