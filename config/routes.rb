@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
   
-    resources :users, only: [:show, :edit, :update, :withdraw, :index]
+    resources :users, only: [:show, :edit, :update, :index]
   
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :comments, only: [:create, :destroy]
@@ -41,8 +41,12 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :dashboards, only: [:index]
-    #get 'dashboards', to: 'dashboards#index'
-    resources :users, only: [:show, :destroy]
+    
+    resources :users, only: [:show]
+    
+    patch 'admin/users/:id/withdraw' => 'users#withdraw', as: 'admin_withdraw'
+    
+    get 'admin/users/memory' => 'users#memory', as: 'memory'
     
     resources :posts, only: [:show, :destroy]
   end

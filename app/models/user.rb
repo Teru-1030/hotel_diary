@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
   
   def active_for_authentication?
-    super && (is_active == true)
+    super && (is_active == true) && (is_deleted == true)
   end
 
   def self.search_for(content, method)
