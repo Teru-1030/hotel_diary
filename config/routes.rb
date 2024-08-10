@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
   
-  #devise_for :users, controllers: {
-    #sessions: 'users/sessions'
-  #}
+  # devise_for :users, controllers: {
+  #   sessions: 'users/sessions'
+  # }
   
   
   
   scope module: :public do
+    
     devise_for :users, controllers: {
     sessions: 'public/sessions'
     }
-  
+    
     root to: "homes#top"
   
     get 'homes/about' => 'homes#about', as: 'about'
