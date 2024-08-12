@@ -1,6 +1,10 @@
-<%= form_with model: @user do |f| %>
+<h3><%= @user.name %></h3>
+<%= form_with model: @user, url:admin_user_path do |f| %>
   <label for="inputReason">強制退会理由</label>
   <%= f.text_field :delete_reason %>
   <%= f.submit "理由を保存" %>
-  <%= link_to "強制退会", admin_withdraw_path(@user), method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に強制退会させますか？" }   %>
+<% end %>
+<%= link_to "戻る", admin_user_path(@user) %>
+<% if @user.is_deleted == true %>
+  <%= link_to "強制退会", admin_withdraw_path(@user), method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
 <% end %>

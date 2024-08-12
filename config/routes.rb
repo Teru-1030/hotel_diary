@@ -41,9 +41,9 @@ Rails.application.routes.draw do
   }
   
   namespace :admin do
-    resources :dashboards, only: [:index]
+    resources :dashboards, only: [:index, :update]
     
-    resources :users, only: [:show]
+    resources :users, only: [:show, :update]
     
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     
