@@ -6,7 +6,12 @@
     <%= @user.self_introduction %>
   </div>
   <div>
-    <%= link_to '強制退会処理', admin_memory_path(@user) %> 
+    <% if @user.is_deleted == true && @user.is_active == true %>
+      <%= link_to '強制退会処理', admin_memory_path(@user) %> 
+    <% end %>
+    <% if @user.is_deleted == false %>
+      <%= link_to '強制退会理由', admin_memory_path(@user) %> 
+    <% end %>
     <%= link_to '戻る', admin_dashboards_path %>
   </div>
 </div>

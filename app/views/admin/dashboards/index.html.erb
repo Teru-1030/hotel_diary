@@ -8,12 +8,12 @@
       <%= user.name %> - <%= user.email %>
       <%= link_to '詳細', admin_user_path(user) %>
       <% if user.is_active == false %>
-        <%= ":退会済み"%>
+        <%= "退会済み"%>
       <% end %>
       <% if user.is_deleted == false %>
-        <%= ":強制退会済み"%>
+        <%= "強制退会済み:"%>
       <% end %>
-
+      <%= user.delete_reason %>
     </li>
   <% end %>
 </ul>
