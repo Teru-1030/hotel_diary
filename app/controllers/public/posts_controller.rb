@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:new]
   
+  
   def new
     @post = Post.new
   end
@@ -51,17 +52,18 @@ class Public::PostsController < ApplicationController
    end
   end
     
+  private
   
- def post_params
+  def post_params
     params.require(:post).permit(:title, :image, :body)
- end
+  end
   
- def is_matching_login_user
+  def is_matching_login_user
     post = Post.find(params[:id])
     unless post.user.id == current_user.id
       redirect_to posts_path
     end
- end
+  end
  
   def ensure_guest_user
     if current_user.guest_user?
