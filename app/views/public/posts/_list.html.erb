@@ -23,7 +23,26 @@
           <p>
           <span>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></span>
           </p>
-           <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+          <% if post.liked_by?(current_user) %>
+            <p>
+              <%= link_to post_like_path(post), method: :delete, style: "color: red;" do %>
+                <i class="fa-solid fa-heart fa-xl"></i><%= post.likes.count %>
+              <% end %>
+              <%= link_to post_path(post.id) do %>
+               <i class="fa-regular fa-comment fa-xl"></i><%= post.comments.count %>
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to post_like_path(post), method: :post do %>
+                <i class="fa-regular fa-heart fa-xl"></i><%= post.likes.count %> 
+              <% end %>
+              <%= link_to post_path(post.id) do %>
+               <i class="fa-regular fa-comment fa-xl"></i><%= post.comments.count %>
+              <% end %>
+            </p>
+          <% end %>
+          <!--<p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>-->
         </div>
       </div>
     </div>

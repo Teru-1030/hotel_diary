@@ -13,11 +13,25 @@
   <% if @post.user == current_user %>
     <%= link_to "投稿編集", edit_post_path(@post) %>
   <% end %>
+  <% if @post.liked_by?(current_user) %>
+    <p>
+      <%= link_to post_like_path(@post), method: :delete, style: "color: red;" do %>
+        <i class="fa-solid fa-heart fa-lg"></i><%= @post.likes.count %>
+      <% end %>
+      |<i class="fa-regular fa-comment fa-lg" style="color: black;"></i><%= @post.comments.count %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_like_path(@post), method: :post do %>
+       <i class="fa-regular fa-heart fa-lg" style="color: #1183ee;"></i><%= @post.likes.count %> 
+      <% end %>
+      | <i class="fa-regular fa-comment fa-lg" style="color: black;"></i><%= @post.comments.count %>
+    </p>
+  <% end %>
   <%= link_to "戻る", posts_path %>
 </div>
 
 <div>
-  <p>コメント件数：<%= @post.comments.count %></p>
   <% @post.comments.each do |comment| %>
     <%= link_to user_path(comment.user.id) do %>
       <%= image_tag comment.user.get_profile_image(50,50) %>
