@@ -58,12 +58,12 @@
         <!--    フォロワー一覧-->
         <!--  <% end %>-->
         <!--</li>-->
-        <!--<li class="nav-item">-->
-        <!--  <%= link_to root_path, class: 'nav-link text-white' do %>-->
-        <!--    <i class="fa-solid fa-right-from-bracket"></i>-->
-        <!--    いいね一覧-->
-        <!--  <% end %>-->
-        <!--</li>-->
+        <li class="nav-item">
+          <%= link_to likes_user_path(current_user), class: 'nav-link text-white' do %>
+            <i class="fa-solid fa-heart"></i>
+            いいね一覧
+          <% end %>
+        </li>
         <li class="nav-item">
           <%= link_to destroy_user_session_path, class: 'nav-link text-white',method: :delete do %>
             <i class="fa-solid fa-right-from-bracket"></i>

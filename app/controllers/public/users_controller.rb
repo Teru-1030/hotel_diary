@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
+  before_action :set_user, only: [:likes]
   
   def show
     @user = User.find(params[:id])
@@ -29,6 +30,12 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
   
+  def likes
+    likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @like_posts = Post.find(likes)
+  end
+  
+  
   private
 
   def user_parmas
@@ -47,6 +54,10 @@ class Public::UsersController < ApplicationController
     if @user.guest_user?
       redirect_to user_path(current_user) , notice: "ゲストユーザーは遷移できません。"
     end
+  end  
+  
+  def set_user
+    @user = User.find(params[:id])
   end  
   
 end

@@ -19,7 +19,10 @@
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
     <% end %>
   <% end %>
-  
+  <% if @user == current_user %>
+    <%= link_to "いいね一覧", likes_user_path(@user) %>
+  <% end %>
+
 </div>
 
 
