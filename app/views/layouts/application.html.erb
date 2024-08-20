@@ -105,8 +105,10 @@
     <div class="d-flex justify-content-center mb-2">
       <%= render "public/searches/form" %>
     </div>
-    <%= link_to :back do %>
-     <i class="fa-solid fa-circle-chevron-left"></i>戻る
+    <% unless controller_name == "homes" %>
+      <%= link_to :back do %>
+        <i class="fa-solid fa-circle-chevron-left"></i>戻る
+      <% end %>
     <% end %>
     <%= yield %>
   </main>
