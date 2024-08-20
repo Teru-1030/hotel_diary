@@ -42,9 +42,11 @@
     <% end %>
   <% end %>
 </div>
+<% unless current_user.guest_user? %> 
 <div>
   <%= form_with model: [@post, @comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+<% end %>

@@ -15,9 +15,13 @@
                 <% end %>
              </td>
              <td><%= user.name %></td>
+             <% unless user.guest_user? %>
              <td>フォロー数: <%= user.followings.count %></td>
              <td>フォロワー数: <%= user.followers.count %></td>
+             <% unless current_user.guest_user? %> 
              <td><%= render "public/relationships/btn", user: user, options: { class: ""} %></td>
+             <% end %>
+             <% end %>
            </tr>
            <% end %>
          </tbody>
