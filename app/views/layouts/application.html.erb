@@ -46,22 +46,22 @@
             新規投稿
           <% end %>
         </li>
-        <!--<li class="nav-item">-->
-        <!--  <%= link_to root_path, class: 'nav-link text-white' do %>-->
-        <!--    <i class="fa-solid fa-right-from-bracket"></i>-->
-        <!--    フォロー一覧-->
-        <!--  <% end %>-->
-        <!--</li>-->
-        <!--<li class="nav-item">-->
-        <!--  <%= link_to root_path, class: 'nav-link text-white' do %>-->
-        <!--    <i class="fa-solid fa-right-from-bracket"></i>-->
-        <!--    フォロワー一覧-->
-        <!--  <% end %>-->
-        <!--</li>-->
+        <li class="nav-item">
+          <%= link_to user_followings_path(current_user.id), class: 'nav-link text-white' do %>
+            <i class="fa-solid fa-user-plus"></i>
+            フォロー中
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to user_followers_path(current_user.id), class: 'nav-link text-white' do %>
+            <i class="fa-solid fa-users"></i>
+            フォロワー
+          <% end %>
+        </li>
         <li class="nav-item">
           <%= link_to likes_user_path(current_user), class: 'nav-link text-white' do %>
             <i class="fa-solid fa-heart"></i>
-            いいね一覧
+            いいね
           <% end %>
         </li>
         <li class="nav-item">
@@ -105,7 +105,7 @@
     <div class="d-flex justify-content-center mb-2">
       <%= render "public/searches/form" %>
     </div>
-    <% unless controller_name == "homes" %>
+    <% unless controller_name == "homes"%>
       <%= link_to :back do %>
         <i class="fa-solid fa-circle-chevron-left"></i>戻る
       <% end %>
