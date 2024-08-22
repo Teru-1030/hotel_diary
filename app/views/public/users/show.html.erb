@@ -1,29 +1,37 @@
 <div>
   <%= flash[:notice] %>
 </div>
-<div>
-  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
   <table>
-  <tbody>
-    <tr>
-      <%= image_tag @user.get_profile_image(100,100) %>
-    </tr>
-    <tr>
-      <th>自己紹介文：</th>
-      <th><%= @user.self_introduction %></th>
-    </tr>
+    <tbody>
+      <tr>
+        <th>ユーザー名：</th>
+        <th><%= @user.name %></th>
+      </tr>
+      <tr>
+        <th>自己紹介文：</th>
+        <th><%= @user.self_introduction %></th>
+      </tr>
+      <tr>
+        <th>フォロー中</th>
+        <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+      </tr>
+      <tr>
+        <th>フォロワー</th>
+        <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+      </tr>
     </tbody>
   </table>
-  <% unless @user.guest_user? %>
+  <% unless current_user.guest_user? %>
     <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+      <%= link_to "プロフィール編集", edit_user_path(@user) %>
+      <p><%= link_to "いいね", likes_user_path(@user) %></p>
+    <% else %>
+      <td><%= render "public/relationships/btn", user: @user, options: { class: ""} %></td>
     <% end %>
   <% end %>
-  <% if @user == current_user %>
-    <%= link_to "いいね一覧", likes_user_path(@user) %>
-  <% end %>
+  
 
-</div>
 
 
 <%= render 'public/posts/list', posts: @posts %>
