@@ -1,5 +1,15 @@
-crumb :root do
-  link "Home", root_path
+crumb :about do
+  link "サイト概要", about_path
+end
+
+crumb :user_show do |user|
+    link "さんの詳細", user_path(user)
+    parent :about
+end
+
+crumb :user_edit do |user|
+    link "ユーザー編集", edit_user_path(user)
+    parent :user_show
 end
 
 # crumb :projects do
