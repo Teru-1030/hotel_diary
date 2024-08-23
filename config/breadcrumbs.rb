@@ -3,13 +3,23 @@ crumb :about do
 end
 
 crumb :user_show do |user|
-    link "さんの詳細", user_path(user)
+    link "#{user.name}さんの詳細", user_path(user)
     parent :about
 end
 
 crumb :user_edit do |user|
-    link "ユーザー編集", edit_user_path(user)
-    parent :user_show
+    link "ユーザー編集"
+    parent :user_show, user
+end
+
+crumb :user_like do |user|
+    link "いいね"
+    parent :user_show, user
+end
+
+crumb :user_followings do |user|
+    link "フォロワー"
+    parent :user_show, user
 end
 
 # crumb :projects do
