@@ -18,5 +18,7 @@
   <%= f.text_area :body %>
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
+  <h4>タグ（,区切りで入力してください）</h4>
+  <%= text_field_tag :tag_name, tag_name %>
   <%= f.submit '投稿' %>
 <% end %>
