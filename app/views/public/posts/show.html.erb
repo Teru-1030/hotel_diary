@@ -1,3 +1,4 @@
+<% breadcrumb :post_show, @post %>
 <div>
   <%= flash[:notice] %>
 </div>
@@ -7,7 +8,10 @@
   </div>
   <p>ホテル名：<%= @post.title %></p>
   <p>宿泊記録：<%= @post.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
+  <p>投稿ユーザー画像：
+      <%= link_to user_path(@post.user.id) do %>
+        <%= image_tag @post.user.get_profile_image(100,100) %></p>
+      <% end %>
   <p>ユーザーネーム：<%= @post.user.name %></p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post.user == current_user %>

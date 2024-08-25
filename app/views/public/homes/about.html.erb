@@ -1,5 +1,4 @@
 <div class="container-fluid" style="background-image: url('<%= asset_path('top.jpg') %>');background-size: cover; background-repeat: no-repeat; background-position: center bottom;">
-
   <div class="row">
     <div class="text-white mx-auto col-10 col-sm-9 col-lg-7 col-xl-6 mt-5">
       <h1 style="font-family: Georgia, Charter, Arial, sans-serif;">Hotel Diary</h1>
@@ -23,7 +22,7 @@
 <% if current_user %>
   <div class= "row">
     <div class="btn-wrappert mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 mt-5 mb-4">
-      <%= link_to "はじめる", user_path(current_user.id), :class=>"btn btn-success btn-sm btn-block" %>
+      <%= link_to "はじめる", posts_path, :class=>"btn btn-success btn-sm btn-block" %>
     </div>
   </div>
 <% end %>
