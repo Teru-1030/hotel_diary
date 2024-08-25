@@ -2,9 +2,24 @@ crumb :about do
   link "サイト概要", about_path
 end
 
+crumb :posts do
+    link "投稿一覧", posts_path
+    parent :about
+end
+
+crumb :post_new do 
+    link "新規投稿", new_post_path
+    parent :posts
+end
+
+crumb :post_show do |post|
+    link "投稿詳細", post_path(post)
+    parent :posts
+end
+
 crumb :user_show do |user|
     link "#{user.name}さんの詳細", user_path(user)
-    parent :about
+    parent :posts
 end
 
 crumb :user_edit do |user|
@@ -17,11 +32,15 @@ crumb :user_like do |user|
     parent :user_show, user
 end
 
-crumb :user_followings do |user|
-    link "フォロワー"
-    parent :user_show, user
-end
+# crumb :user_followings do |user|
+#     link "フォロ中"
+#     parent :user_show, user
+# end
 
+# crumb :user_followers do |user|
+#     link "フォロワー"
+#     parent :user_show, user
+# end
 # crumb :projects do
 #   link "Projects", projects_path
 # end

@@ -22,7 +22,7 @@
 <% if current_user %>
   <div class= "row">
     <div class="btn-wrappert mx-auto col-11 col-sm-10 col-lg-8 col-xl-6 mt-5 mb-4">
-      <%= link_to "はじめる", user_path(current_user.id), :class=>"btn btn-success btn-sm btn-block" %>
+      <%= link_to "はじめる", posts_path, :class=>"btn btn-success btn-sm btn-block" %>
     </div>
   </div>
 <% end %>
