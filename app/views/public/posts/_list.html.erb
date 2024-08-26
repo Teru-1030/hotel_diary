@@ -24,6 +24,14 @@
           <p>
           <span>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></span>
           </p>
+          <p>
+            <span>
+              <i class="fa-solid fa-tags"></i>:
+              <% post.tags.each do |tag| %>
+                <%= tag.name %>
+              <% end %>
+            </span>
+          </p>
           <% if post.liked_by?(current_user) %>
             <p>
               <%= link_to post_like_path(post), method: :delete, style: "color: red;" do %>

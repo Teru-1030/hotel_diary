@@ -11,13 +11,29 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-   if@post.save
-     flash[:notice] = "投稿に成功しました"
-    redirect_to posts_path
-   else
-     render :new
-   end
+    puts params[:tag_name]
+    puts params.inspect
+    tag_names = params["@tag_name"].split(",")
+    tags = tag_names.map{ |tag_name| Tag.find_or_initialize_by(name: tag_name) }
+    tags.each do |tag|
+      if tag.invalid?
+        @tag_name = params[:tag_name]
+        @post.errors.add(:tags, tag.errors.full_messages.join("\n"))
+        return render :edit, status: :unprocessable_entity
+      end
+    end
+    
+      @post.tags = tags
+      if@post.save
+        flash[:notice] = "投稿に成功しました"
+        redirect_to posts_path
+      else
+        @tag_name = params[:tag_name]
+        render :new, status: unprocessable_entity
+      end
   end
+  
+  
 
   def index
     @posts = Post.all
