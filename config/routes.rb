@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resource :like, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
+      get :tags, on: :collection
     end
   
     resources :tags, only: [:index, :show]

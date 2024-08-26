@@ -36,9 +36,13 @@ class Public::PostsController < ApplicationController
   
 
   def index
-    @posts = Post.all
+    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
   end
-
+ 
+  def tags
+    @tags = Tag.all
+  end
+  
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
