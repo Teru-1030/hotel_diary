@@ -19,8 +19,11 @@
   
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
+  <h4>タグ（,区切りで入力してください）</h4>
+  <%= text_field_tag :@tag_name, @tag_name %>
+  <div>
   <%= f.submit '保存' %>
-  
+  </div>
 <% end %>
 <%= link_to "戻る", post_path(@post) %>
 <% if @post.user == current_user %>
