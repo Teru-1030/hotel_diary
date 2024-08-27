@@ -54,12 +54,23 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-   if @post.update(post_params)
-     flash[:notice] = "編集に成功しました"
-    redirect_to post_path(@post.id)  
-   else
-     render :edit
-   end
+    tag_names = params[:@tag_name].split(",")
+    tags = tag_names.map{ |tag_name| Tag.find_or_create_by(name: tag_name) }
+    tags.each do |tag|
+      if tag.invalid?
+        @tag_name = parmas[:tag_name]
+        @post.errors.add(tags, tag.errors.full_messages.joim("\n") )
+        return render :edit, status: :unprocessable_entity
+      end
+    end
+    
+    if @post.update(post_params) && @post.update!(tags: tags)
+      flash[:notice] = "編集に成功しました"
+      redirect_to post_path(@post.id)  
+    else
+      @tag_name = params[:tag_name]
+      render :edit,status: :unprocessable_entity
+    end
   end
   
   def destroy
