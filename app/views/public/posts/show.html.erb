@@ -40,7 +40,6 @@
     </p>
   <% end %>
 </div>
-
 <div>
   <% @post.comments.each do |comment| %>
     <%= link_to user_path(comment.user.id) do %>
