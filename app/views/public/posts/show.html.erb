@@ -8,6 +8,13 @@
   </div>
   <p>ホテル名：<%= @post.title %></p>
   <p>宿泊記録：<%= @post.body %></p>
+  <p><i class="fa-solid fa-tags"></i>:
+       <%= link_to(tags_posts_path) do %>
+         <% @post.tags.each do |tag| %>
+           <%= tag.name %>
+         <% end %>
+       <% end %>
+       </p>
   <p>投稿ユーザー画像：
       <%= link_to user_path(@post.user.id) do %>
         <%= image_tag @post.user.get_profile_image(100,100) %></p>
@@ -33,7 +40,6 @@
     </p>
   <% end %>
 </div>
-
 <div>
   <% @post.comments.each do |comment| %>
     <%= link_to user_path(comment.user.id) do %>

@@ -11,12 +11,15 @@
 <% end %>
 
 <%= form_with model: @post do |f| %>
-
   <h4>ホテル名</h4>
   <%= f.text_field :title %>
   <h4>宿泊記録</h4>
   <%= f.text_area :body %>
   <h4>画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
+  <h4>タグ（,区切りで入力してください）</h4>
+  <%= text_field_tag :@tag_name, @tag_name %>
+  <div>
   <%= f.submit '投稿' %>
+  </div>
 <% end %>
