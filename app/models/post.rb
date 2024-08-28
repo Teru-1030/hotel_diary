@@ -9,7 +9,7 @@ class Post < ApplicationRecord
     validates :title, presence: true
     validates :body, presence: true
     
-    
+    enum status: { published: 0, draft: 1,  unpublished: 2 }
     
    def get_image
     unless image.attached?

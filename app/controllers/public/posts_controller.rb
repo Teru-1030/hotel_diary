@@ -22,9 +22,18 @@ class Public::PostsController < ApplicationController
         return render :edit, status: :unprocessable_entity
       end
     end
+
+    if params[:draft].present?
+      @post.status = :draft
+    else
+      @post.status = :published
+    end
     
       @post.tags = tags
+      
       if@post.save
+        # if @post.draft?
+          
         flash[:notice] = "投稿に成功しました"
         redirect_to posts_path
       else
