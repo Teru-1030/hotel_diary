@@ -1,3 +1,4 @@
+<% breadcrumb :user_followings, @user %>
 <h2>フォロー中</h2>
 <% if @users.exists? %>
   <%= render "public/users/search", users: @users %>
