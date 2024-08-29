@@ -22,18 +22,10 @@ class Public::PostsController < ApplicationController
         return render :edit, status: :unprocessable_entity
       end
     end
-
-    if params[:draft].present?
-      @post.status = :draft
-    else
-      @post.status = :published
-    end
     
       @post.tags = tags
       
       if@post.save
-        # if @post.draft?
-          
         flash[:notice] = "投稿に成功しました"
         redirect_to posts_path
       else
@@ -59,7 +51,7 @@ class Public::PostsController < ApplicationController
 
   def edit
      @post = Post.find(params[:id])
-     @tag_name = @post.tags.pluck(:name).join(",")
+     @tag_name = params[:tag_name]
   end
   
   def update
@@ -92,6 +84,20 @@ class Public::PostsController < ApplicationController
      render :edit
    end
   end
+  
+  def release
+    post =  Post.find(params[:id])
+    post.released! unless post.released?
+    flash[:notice] = "投稿を公開しました"
+    redirect_to request.referer
+  end
+
+  def nonrelease
+    post =  Post.find(params[:id])
+    post.nonreleased! unless post.nonreleased?
+    flash[:notice] = "投稿を公開しました"
+    redirect_to request.referer
+  end  
     
   private
   

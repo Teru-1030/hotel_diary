@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
   
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
+      patch 'nonrelease' => 'posts#nonrelease', as: "nonrelease"
+      patch 'release' => 'posts#release', as: "release"
       resource :like, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
       get :tags, on: :collection
@@ -41,7 +43,9 @@ Rails.application.routes.draw do
     resources :tags, only: [:index, :show]
   
     resources :likes, only: [:index]
-  
+    
+   
+    
     patch  '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
   
     get "/search", to: "searches#search"
