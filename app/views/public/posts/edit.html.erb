@@ -25,9 +25,9 @@
   <%= text_field_tag :@tag_name, @tag_name %>
   <div>
   <% if @post.released? %>
-    <%= link_to '非公開にする', nonrelease_path(@post), method: :patch %>
+    <%= link_to '非公開にする', nonrelease_path(@post), :class => "btn btn-secondary mx-1 my-2", method: :patch %>
   <% else %>
-    <%= link_to '公開する', release_path(@post), method: :patch %>
+    <%= link_to '公開する', release_path(@post),:class => "btn btn-primary mx-1 my-2", method: :patch %>
   <% end %>
   <%= f.submit '保存' %>
   </div>
