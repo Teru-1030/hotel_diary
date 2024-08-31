@@ -1,5 +1,7 @@
+<div>
+  <%= flash[:notice] %>
+</div>
 <h1>投稿編集画面</h1>
-
 <% if @post.errors.any? %>
   <%= @post.errors.count %>件のエラーが発生しました
   <ul>
@@ -23,9 +25,9 @@
   <%= text_field_tag :@tag_name, @tag_name %>
   <div>
   <% if @post.released? %>
-    <%= link_to '非公開にする', post_nonrelease_path(@post), method: :patch %>
+    <%= link_to '非公開にする', nonrelease_path(@post), method: :patch %>
   <% else %>
-    <%= link_to '公開する', post_release_path(@post), method: :patch %>
+    <%= link_to '公開する', release_path(@post), method: :patch %>
   <% end %>
   <%= f.submit '保存' %>
   </div>

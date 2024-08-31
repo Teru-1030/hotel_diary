@@ -33,12 +33,13 @@ Rails.application.routes.draw do
     end
   
     resources :posts, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
-      patch 'nonrelease' => 'posts#nonrelease', as: "nonrelease"
-      patch 'release' => 'posts#release', as: "release"
       resource :like, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
       get :tags, on: :collection
     end
+    
+    patch 'post/:id/nonrelease' => 'posts#nonrelease', as: "nonrelease"
+    patch 'post/:id/release' => 'posts#release', as: "release"
   
     resources :tags, only: [:index, :show]
   

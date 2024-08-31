@@ -37,7 +37,11 @@ class Public::PostsController < ApplicationController
   
 
   def index
-    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+    if params[:tag_id].present?
+      @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id)
+    else
+      @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id)
+    end
   end
  
   def tags
@@ -51,7 +55,7 @@ class Public::PostsController < ApplicationController
 
   def edit
      @post = Post.find(params[:id])
-     @tag_name = params[:tag_name]
+     @tag_name = @post.tags.pluck(:name).join(",")
   end
   
   def update
@@ -60,7 +64,7 @@ class Public::PostsController < ApplicationController
     tags = tag_names.map{ |tag_name| Tag.find_or_create_by(name: tag_name) }
     tags.each do |tag|
       if tag.invalid?
-        @tag_name = parmas[:tag_name]
+        @tag_name = params[:tag_name]
         @post.errors.add(tags, tag.errors.full_messages.joim("\n") )
         return render :edit, status: :unprocessable_entity
       end
@@ -86,16 +90,16 @@ class Public::PostsController < ApplicationController
   end
   
   def release
-    post =  Post.find(params[:id])
-    post.released! unless post.released?
+    @post = Post.find(params[:id])
+    @post.released! unless @post.released?
     flash[:notice] = "投稿を公開しました"
     redirect_to request.referer
   end
 
   def nonrelease
-    post =  Post.find(params[:id])
+    post = Post.find(params[:id])
     post.nonreleased! unless post.nonreleased?
-    flash[:notice] = "投稿を公開しました"
+    flash[:notice] = "投稿を非公開しました"
     redirect_to request.referer
   end  
     
