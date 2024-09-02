@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get :tags, on: :collection
     end
     
+    get 'post/:id/choice' => 'posts#choice', as: "choice"
     patch 'post/:id/nonrelease' => 'posts#nonrelease', as: "nonrelease"
     patch 'post/:id/release' => 'posts#release', as: "release"
   

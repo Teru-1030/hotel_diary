@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="mx-auto col-10 col-sm-9 col-lg-7 col-xl-6 my-5">
+    <h2>〜投稿方法選択〜</h2>
+    <p>投稿を公開にするか、非公開にするか選択してください！</p>
+    <%= link_to '公開する', release_path(@post),:class => "btn btn-primary mx-1 my-2", method: :patch %>
+    <%= link_to '非公開にする', nonrelease_path(@post), :class => "btn btn-secondary mx-1 my-2", method: :patch, redirect_to posts_path %>
+  </div>
+</div>

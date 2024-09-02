@@ -27,10 +27,10 @@ class Public::PostsController < ApplicationController
       
       if@post.save
         flash[:notice] = "投稿に成功しました"
-        redirect_to posts_path
+        redirect_to choice_path(@post)
       else
         @tag_name = params[:tag_name]
-        render :new, status: unprocessable_entity
+        render :new
       end
   end
   
@@ -90,8 +90,8 @@ class Public::PostsController < ApplicationController
   end
   
   def release
-    @post = Post.find(params[:id])
-    @post.released! unless @post.released?
+    post = Post.find(params[:id])
+    post.released! unless post.released?
     flash[:notice] = "投稿を公開しました"
     redirect_to request.referer
   end
@@ -99,10 +99,13 @@ class Public::PostsController < ApplicationController
   def nonrelease
     post = Post.find(params[:id])
     post.nonreleased! unless post.nonreleased?
-    flash[:notice] = "投稿を非公開しました"
+    flash[:notice] = "投稿を非公開にしました"
     redirect_to request.referer
   end  
-    
+  
+  def choice
+    @post = Post.find(params[:id])
+  end
   private
   
   def post_params
