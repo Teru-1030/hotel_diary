@@ -23,11 +23,17 @@ class Public::PostsController < ApplicationController
       end
     end
     
+    if params[:nonreleased].present?
+      @post.status = :nonreleased
+    else
+      @post.status = :released
+    end    
+    
       @post.tags = tags
       
       if@post.save
         flash[:notice] = "投稿に成功しました"
-        redirect_to choice_path(@post)
+        redirect_to post_path(@post)
       else
         @tag_name = params[:tag_name]
         render :new
@@ -103,9 +109,6 @@ class Public::PostsController < ApplicationController
     redirect_to request.referer
   end  
   
-  def choice
-    @post = Post.find(params[:id])
-  end
   private
   
   def post_params
