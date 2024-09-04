@@ -27,7 +27,6 @@
   <%= f.submit '保存' %>
   </div>
 <% end %>
-<%= link_to "戻る", post_path(@post) %>
 <% if @post.user == current_user %>
  <%= link_to "投稿削除", post_path(@post), method: :delete , data: { confirm: "本当に削除しますか？" } %>
 <% end %>

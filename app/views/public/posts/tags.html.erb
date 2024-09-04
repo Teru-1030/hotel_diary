@@ -1,7 +1,8 @@
+<% breadcrumb :posts_tags %>
 <% provide(:title, "タグ一覧") %>
 <div>
   <h2>タグ一覧</h2>
     <% @tags.each do |t| %>
-      <%= link_to t.name, posts_path(tag_id: t.id)%>
+      <%= link_to t.name, posts_path(tag_id: t.id), :class => "btn btn-secondary mx-1 my-2" %>
     <% end %>
 </div>
