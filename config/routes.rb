@@ -37,13 +37,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       get :tags, on: :collection
     end
-  
-    resources :tags, only: [:index, :show]
-  
-    resources :likes, only: [:index]
-  
+    
+    patch 'post/:id/nonrelease' => 'posts#nonrelease', as: "nonrelease"
+    patch 'post/:id/release' => 'posts#release', as: "release"
     patch  '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
-  
     get "/search", to: "searches#search"
   
   end

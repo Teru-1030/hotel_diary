@@ -1,4 +1,3 @@
-<!--<%= link_to "戻る", :back %>-->
 <div class="card-list-container py-5">
   <% posts.each do |post| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
@@ -25,14 +24,14 @@
           <span>投稿日:<%= post.created_at.strftime('%Y/%m/%d') %></span>
           </p>
           <p>
-            <%= link_to(tags_posts_path) do %>
+           
             <span>
               <i class="fa-solid fa-tags"></i>:
               <% post.tags.each do |tag| %>
-                <%= tag.name %>
+                <%= link_to tag.name, posts_path(tag_id: tag.id)%>
               <% end %>
             </span>
-            <% end %>
+            
           </p>
           <% if post.liked_by?(current_user) %>
             <p>
@@ -53,6 +52,9 @@
               <% end %>
             </p>
           <% end %>
+          <% if post.status == "nonreleased" %>
+　　　　　<span>【非公開中の投稿】</span>
+　　　　　<% end %>
         </div>
       </div>
     </div>

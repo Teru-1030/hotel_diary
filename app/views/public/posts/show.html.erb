@@ -6,6 +6,9 @@
   <div class="mt-5 mb-3">
   <%= image_tag @post.get_image, size: "500x500" %>
   </div>
+  <% if @post.status == "nonreleased" %>
+　  <p>【非公開中の投稿】</p>
+　<% end %>
   <p>ホテル名：<%= @post.title %></p>
   <p>宿泊記録：<%= @post.body %></p>
   <p><i class="fa-solid fa-tags"></i>:
@@ -14,7 +17,7 @@
            <%= tag.name %>
          <% end %>
        <% end %>
-       </p>
+  </p>
   <p>投稿ユーザー画像：
       <%= link_to user_path(@post.user.id) do %>
         <%= image_tag @post.user.get_profile_image(100,100) %></p>
@@ -22,6 +25,11 @@
   <p>ユーザーネーム：<%= @post.user.name %></p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post.user == current_user %>
+    <% if @post.released? %>
+      <%= link_to '非公開にする', nonrelease_path(@post), :class => "btn btn-secondary mx-1 my-2", method: :patch %>
+    <% else %>
+      <%= link_to '公開する', release_path(@post),:class => "btn btn-primary mx-1 my-2", method: :patch %>
+    <% end %>
     <%= link_to "投稿編集", edit_post_path(@post) %>
   <% end %>
   <% if @post.liked_by?(current_user) %>

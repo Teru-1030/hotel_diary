@@ -17,6 +17,11 @@ crumb :post_show do |post|
     parent :posts
 end
 
+crumb :posts_tags do 
+    link "タグ一覧", tags_posts_path
+    parent :posts
+end
+
 crumb :user_show do |user|
     link "#{user.name}さんの詳細", user_path(user)
     parent :posts
@@ -32,15 +37,16 @@ crumb :user_like do |user|
     parent :user_show, user
 end
 
-# crumb :user_followings do |user|
-#     link "フォロ中"
-#     parent :user_show, user
-# end
+crumb :user_followings do |user|
+    link "フォロー中"
+    parent :user_show, user
+end
 
-# crumb :user_followers do |user|
-#     link "フォロワー"
-#     parent :user_show, user
-# end
+crumb :user_followers do |user|
+    link "フォロワー"
+    # byebug
+    parent :user_show, user
+end
 # crumb :projects do
 #   link "Projects", projects_path
 # end
