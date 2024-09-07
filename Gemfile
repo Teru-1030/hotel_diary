@@ -67,3 +67,5 @@ gem "net-pop"
 gem "net-imap"
 
 gem 'gretel'
+
+gem 'kaminari','~> 1.2.1'
