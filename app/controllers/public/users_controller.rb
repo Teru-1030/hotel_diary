@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_guest_user, only: [:edit, :show]
+  before_action :ensure_active_user, only: [:show]
   before_action :set_user, only: [:likes]
   
   def show
@@ -42,17 +43,24 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :self_introduction)
   end
 
- def is_matching_login_user
+  def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to user_path(current_user.id)
     end 
- end
+  end
   
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーは遷移できません。"
+      redirect_to request.referer , notice: "ゲストユーザーは遷移できません。"
+    end
+  end  
+  
+  def ensure_active_user
+    @user = User.find(params[:id])
+    if @user.active_for_authentication?
+      redirect_to request.referer , notice: "退会済みユーザーのため遷移できません。"
     end
   end  
   
