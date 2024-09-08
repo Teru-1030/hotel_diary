@@ -33,7 +33,7 @@ crumb :user_edit do |user|
 end
 
 crumb :user_like do |user|
-    link "いいね"
+    link "いいね!"
     parent :user_show, user
 end
 

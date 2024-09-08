@@ -25,8 +25,8 @@
   </table>
   <% unless current_user.guest_user? %>
     <% if @user == current_user %>
-      <%= link_to "プロフィール編集", edit_user_path(@user) %>
-      <p><%= link_to "いいね", likes_user_path(@user) %></p>
+      <%= link_to "♡いいね！", likes_user_path(@user), class: "btn btn-info mx-2 my-1" %>
+      <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success mx-1 my-1" %>
     <% else %>
       <td><%= render "public/relationships/btn", user: @user, options: { class: ""} %></td>
     <% end %>
