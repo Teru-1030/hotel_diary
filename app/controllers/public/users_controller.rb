@@ -59,7 +59,7 @@ class Public::UsersController < ApplicationController
   
   def ensure_active_user
     @user = User.find(params[:id])
-    if @user.active_for_authentication?
+    unless @user.active_for_authentication?
       redirect_to request.referer , notice: "退会済みユーザーのため遷移できません。"
     end
   end  

@@ -10,23 +10,7 @@
     <% end %>
   </ul>
 <% end %>
-
-<%= form_with model: @post do |f| %>
-
-  <h4>ホテル名</h4>
-  <%= f.text_field :title %>
-  
-  <h4>宿泊記</h4>
-  <%= f.text_area :body %>
-  
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>タグ（,区切りで入力してください）</h4>
-  <%= text_field_tag :@tag_name, @tag_name %>
-  <div>
-  <%= f.submit '保存' %>
-  </div>
-<% end %>
+<%= render 'form', post: @post, tag_name: @tag_name %>
 <% if @post.user == current_user %>
- <%= link_to "投稿削除", post_path(@post), method: :delete , data: { confirm: "本当に削除しますか？" } %>
+ <%= link_to "投稿削除", post_path(@post), method: :delete , class: "btn btn-outline-danger mx-1", data: { confirm: "本当に削除しますか？" } %>
 <% end %>
