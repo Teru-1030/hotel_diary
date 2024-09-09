@@ -1,5 +1,6 @@
 class Public::RelationshipsController < ApplicationController
-    
+  before_action :ensure_guest_user, only: [:followings, :followers]
+  
   def create
     user = User.find(params[:user_id])
     current_user.follow(user)
@@ -21,5 +22,14 @@ class Public::RelationshipsController < ApplicationController
     @user = User.find(params[:user_id])
     @users = @user.followers
   end    
+  
+  private
+  
+  def ensure_guest_user
+    @user = User.find(params[:user_id])
+    if @user.guest_user?
+      redirect_to request.referer , notice: "ゲストユーザーのため遷移できません。"
+    end
+  end  
     
 end

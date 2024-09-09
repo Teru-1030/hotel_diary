@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
-  before_action :ensure_guest_user, only: [:edit, :show]
+  before_action :ensure_guest_user, only: [:edit, :show, :likes]
   before_action :ensure_active_user, only: [:show]
   before_action :set_user, only: [:likes]
   
