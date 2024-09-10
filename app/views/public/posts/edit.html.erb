@@ -10,7 +10,7 @@
     <% end %>
   </ul>
 <% end %>
-<%= render 'form', post: @post, tag_name: @tag_name %>
+<%= render 'form', post: @post %>
 <% if @post.user == current_user %>
  <%= link_to "投稿削除", post_path(@post), method: :delete , class: "btn btn-outline-danger mx-1", data: { confirm: "本当に削除しますか？" } %>
 <% end %>
