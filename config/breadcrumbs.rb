@@ -44,7 +44,6 @@ end
 
 crumb :user_followers do |user|
     link "フォロワー"
-    # byebug
     parent :user_show, user
 end
 # crumb :projects do

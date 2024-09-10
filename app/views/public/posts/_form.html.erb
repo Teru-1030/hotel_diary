@@ -1,0 +1,17 @@
+<%= form_with model: post do |f| %>
+
+  <h4>ホテル名</h4>
+  <%= f.text_field :title, class: "mx-1 my-1" %>
+  
+  <h4>宿泊記録</h4>
+  <%= f.text_area :body, class: "mx-1 my-1" %>
+  
+  <h4>画像</h4>
+  <%= f.file_field :image, accept: "image/*", class: "mx-1 my-1" %>
+  <h4>タグ（,区切りで入力してください）</h4>
+  <%= text_field_tag :@tag_name, @tag_name, class: "mx-1 my-1" %>
+  
+  <div>
+  <%= f.submit '保存', class: "btn btn-primary mx-1 my-2" %>
+  </div>
+<% end %>
