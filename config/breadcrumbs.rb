@@ -33,7 +33,7 @@ crumb :user_edit do |user|
 end
 
 crumb :user_like do |user|
-    link "いいね!"
+    link "いいね"
     parent :user_show, user
 end
 
@@ -44,7 +44,6 @@ end
 
 crumb :user_followers do |user|
     link "フォロワー"
-    # byebug
     parent :user_show, user
 end
 # crumb :projects do
