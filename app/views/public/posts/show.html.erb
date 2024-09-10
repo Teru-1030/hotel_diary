@@ -13,7 +13,7 @@
   <p>宿泊記録：<%= @post.body %></p>
   <p><i class="fa-solid fa-tags"></i>:
     <% @post.tags.each do |tag| %>
-      <%= link_to tag.name, posts_path(tag_id: tag.id)%>
+      #<%= link_to tag.name, posts_path(tag_id: tag.id)%>
     <% end %>
   </p>
   <p>投稿ユーザー画像：
