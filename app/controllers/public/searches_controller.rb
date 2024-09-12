@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
       @records = User.search_for(@content, @method)
       @records = @records.reject {|user| user.is_active == false || user.is_deleted == false}
     else
-      @records = Post.search_for(@content, @method).page(params[:page])
+      @records = Post.search_for(@content, @method).where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page])
     end
   end
   

@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page])
+    @posts = @user.posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page])
   end
 
   def edit
@@ -33,7 +33,7 @@ class Public::UsersController < ApplicationController
   
   def likes
     likes = Like.where(user_id: @user.id).pluck(:post_id)
-    @like_posts = Post.where(id: likes).page(params[:page])
+    @like_posts = Post.where(id: likes).where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page])
   end
 
   
