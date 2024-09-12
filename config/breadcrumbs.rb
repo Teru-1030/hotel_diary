@@ -17,6 +17,11 @@ crumb :post_show do |post|
     parent :posts
 end
 
+crumb :search do 
+    link "検索結果", search_path
+    parent :posts
+end
+
 crumb :posts_tags do 
     link "タグ一覧", tags_posts_path
     parent :posts
