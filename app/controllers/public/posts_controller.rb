@@ -44,9 +44,9 @@ class Public::PostsController < ApplicationController
 
   def index
     if params[:tag_id].present?
-      @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page])
+      @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page]).order(created_at: :desc)
     else
-      @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page])
+      @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page]).order(created_at: :desc)
     end
   end
  
@@ -112,7 +112,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :image, :body)
+    params.require(:post).permit(:title, :body, :image)
   end
   
   def is_matching_login_user

@@ -16,7 +16,7 @@ class Post < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_img.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image
+      image
    end
    
    def self.search_for(content, method)
