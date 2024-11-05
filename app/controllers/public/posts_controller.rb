@@ -52,7 +52,7 @@ class Public::PostsController < ApplicationController
         @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).old.page(params[:page])
       else
         @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).old.page(params[:page])
-      end      
+      end
     else
       if params[:tag_id].present?
         @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page]).order(created_at: :desc)

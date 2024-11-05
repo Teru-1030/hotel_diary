@@ -13,7 +13,7 @@ class Post < ApplicationRecord
     
     scope :latest, -> { order(created_at: :desc) }  #desc = 降順
     scope :old, -> { order(created_at: :asc) }  #asc = 昇順
-    
+
    def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_img.jpg')
