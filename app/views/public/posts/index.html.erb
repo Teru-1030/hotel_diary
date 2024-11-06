@@ -1,4 +1,16 @@
 <% breadcrumb :posts %>
+<div class="dropdown">
+  <!-- 切替ボタンの設定 -->
+  <button type="button" class="btn btn-outline-secondary dropdown-toggle mx-4 my-2" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    並び替え
+  </button>
+  <!-- ドロップメニューの設定 -->
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <%= link_to '新着順', posts_path(latest: "true"), class: "dropdown-item" %>
+    <%= link_to '古い順', posts_path(old: "true"), class: "dropdown-item" %>
+  </div>
+</div>
+
 <div>
   <%= flash[:notice] %>
 </div>

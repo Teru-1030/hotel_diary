@@ -2,7 +2,7 @@
   <% posts.each do |post| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image, class: "card-img-top"; %>
+      <%= image_tag post.image, class: "card-img-top"; %>
     <% end %>
     <div class="card-body">
       <div class="row">

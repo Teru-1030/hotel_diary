@@ -40,13 +40,25 @@ class Public::PostsController < ApplicationController
       end
   end
   
-  
-
   def index
-    if params[:tag_id].present?
-      @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page])
+    if params[:latest]
+      if params[:tag_id].present?
+        @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).latest.page(params[:page])
+      else
+        @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).latest.page(params[:page])
+      end
+    elsif params[:old]
+      if params[:tag_id].present?
+        @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).old.page(params[:page])
+      else
+        @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).old.page(params[:page])
+      end
     else
-      @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page])
+      if params[:tag_id].present?
+        @posts = Tag.find(params[:tag_id]).posts.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page]).order(created_at: :desc)
+      else
+        @posts = Post.where("status = 0 OR (status = 1 AND user_id = ?)", current_user.id).page(params[:page]).order(created_at: :desc)
+      end
     end
   end
  
@@ -112,7 +124,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :image, :body)
+    params.require(:post).permit(:title, :body, :image)
   end
   
   def is_matching_login_user

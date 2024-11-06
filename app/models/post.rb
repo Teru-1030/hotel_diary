@@ -11,12 +11,15 @@ class Post < ApplicationRecord
     
     enum status: { released: 0, nonreleased: 1 }
     
+    scope :latest, -> { order(created_at: :desc) }  #desc = 降順
+    scope :old, -> { order(created_at: :asc) }  #asc = 昇順
+
    def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_img.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image
+      image
    end
    
    def self.search_for(content, method)
